@@ -8,20 +8,36 @@ import java.util.Optional;
 public class CarRental {
     private static List<Car> carList;
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Car car : carList) {
+            sb.append(car.getModel()).append(" ").append(car.getYear()).append("\n");
+        }
+        return sb.toString().trim();
+    }
+
     public CarRental() {
         this.carList = new ArrayList<>();
     }
 
     public void add(Car car) {
+        if (car == null)
+        {
+            throw new NullPointerException();
+        }
         carList.add(car);
     }
     public void remove(Car car) {
+        if (!carList.contains(car)) {
+            throw new IllegalStateException();
+        }
         carList.remove(car);
     }
 
     public static Optional<Car> findACarByModel(String model) {
         for (Car car : carList) {
-            if (car.getModel().equals(model)) {
+            if (car.getModel().equals(model) && car.getYear() == car.getYear()) {
                 return Optional.of(car);
             }
         }

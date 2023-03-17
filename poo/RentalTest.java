@@ -56,8 +56,8 @@ public class RentalTest {
         int currentYear = LocalDate.now().getYear();
         CarRental rental = new CarRental();
         rental.add(new Car("ford mustang", currentYear - 3));
-        List<?> toSell = rental.toSell();
-        assertTrue(toSell.contains(new Car("ford mustang", currentYear - 3)));
+        List<Car> toSell = rental.toSell();
+        assertTrue(toSell.stream().anyMatch(c -> c.getModel().equals("ford mustang") && c.getYear() == currentYear - 3));
     }
 
     @Test
@@ -124,7 +124,7 @@ public class RentalTest {
         CarRental rental = new CarRental();
         rental.add(new Car("ford mustang", 2020));
         rental.add(new Camel(2003));
-        assertEquals(new Car("ford mustang", 2020), rental.findACarByModel("ford mustang").get());
+        assertEquals(rental.findACarByModel("ford mustang").get(), new Car("ford mustang", 2020));
     }
 
     @Test

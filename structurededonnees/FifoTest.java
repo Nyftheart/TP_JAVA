@@ -1,13 +1,12 @@
-```Java
-package tp.structurededonnees;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+package structurededonnees;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
+import tp.structurededonnees.queue.Fifo;
+
+import static org.junit.Assert.*;
 
 public class FifoTest {
     @Test(expected=IllegalArgumentException.class)
@@ -154,4 +153,3 @@ public class FifoTest {
         assertEquals(list.toString(), fifo.toString());
     }
 }
-```

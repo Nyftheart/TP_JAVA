@@ -2,18 +2,8 @@ package tp.poo.rental;
 
 public class Main {
     public static <Optional> void main(String[] args) {
-        Car car1 = new Car("Peugeot 308", 2019);
-        Car car2 = new Car("Renault Clio", 2020);
-        Car car3= new Car("ford mustang", 2014);
-        Camel camel1 = new Camel(2020);
-        Camel camel2 = new Camel(2018);
 
         CarRental rental = new CarRental();
-        rental.add(car1);
-        rental.add(car2);
-        rental.add(car3);
-        rental.add(camel1);
-        rental.add(camel2);
 
         System.out.println("Voitures à vendre:");
         for (Car car : rental.toSell()) {
