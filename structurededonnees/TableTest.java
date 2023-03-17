@@ -1,5 +1,5 @@
-```Java
-package tp.structurededonnees;
+
+package structurededonnees;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import tp.structurededonnees.table.*;
 
 public class TableTest {
     // Q1
@@ -644,4 +645,3 @@ public class TableTest {
         );
     }
 }
-```

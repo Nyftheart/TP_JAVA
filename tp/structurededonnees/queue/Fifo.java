@@ -1,76 +1,57 @@
 package tp.structurededonnees.queue;
 
+
+import java.util.ArrayList;
+
 public class Fifo {
-    private Object[] data;
-    private int head;
-    private int tail;
 
-    public Fifo(int size) {
-        if (size <= 0) {
-            throw new IllegalArgumentException("Max size must be positive");
+    private ArrayList<Object> elements;
+    private int maxSize;
+
+    public Fifo(int maxSize) {
+        if (maxSize <= 0) {
+            throw new IllegalArgumentException();
         }
-        data = new Object[size];
-        head = -1;
-        tail = -1;
+        this.elements = new ArrayList<Object>();
+        this.maxSize = maxSize;
     }
 
-    public boolean isEmpty() {
-        return head == -1;
+    public void offer(Object element) {
+        if (element == null) {
+            throw new NullPointerException();
+        }
+        if (this.elements.size() == this.maxSize) {
+            throw new IllegalStateException();
+        }
+        this.elements.add(element);
     }
 
-    public boolean isFull() {
-        return (tail + 1) % data.length == head;
+    public Object poll() {
+        if (this.elements.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        return this.elements.remove(0);
     }
 
     public int size() {
-        if (isEmpty()) {
-            return 0;
-        } else if (tail >= head) {
-            return tail - head + 1;
-        } else {
-            return data.length - head + tail + 1;
-        }
+        return this.elements.size();
     }
 
-    public void offer(Object o) {
-        if (o == null) {
-            throw new IllegalArgumentException("Null elements are not allowed");
-        }
-        if (isFull()) {
-            throw new RuntimeException("Queue is full");
-        }
-        if (head == -1) {
-            head = 0;
-        }
-        tail = (tail + 1) % data.length;
-        data[tail] = o;
+    public boolean isEmpty() {
+        return this.elements.isEmpty();
     }
 
-    public int poll() {
-        if (isEmpty()) {
-            throw new IllegalStateException("Queue is empty");
-        }
-        int value = (int) data[head];
-        if (head == tail) {
-            head = -1;
-            tail = -1;
-        } else {
-            head = (head + 1) % data.length;
-        }
-        return value;
-    }
-
-    public void print() {
-        if (isEmpty()) {
-            System.out.println("[]");
-        } else {
-            System.out.print("[");
-            int i = head;
-            while (i != tail) {
-                System.out.print(data[i] + ", ");
-                i = (i + 1) % data.length;
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < this.elements.size(); i++) {
+            sb.append(this.elements.get(i));
+            if (i < this.elements.size() - 1) {
+                sb.append(", ");
             }
-            System.out.println(data[tail] + "]");
         }
+        sb.append("]");
+        return sb.toString();
     }
+
 }
