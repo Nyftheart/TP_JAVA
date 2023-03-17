@@ -37,24 +37,24 @@ On souhaite créer deux threads qui changent le même champ d'un même objet :
 
 ```Java
 public class Test {
-  int value;
+   int value;
 
-  public static void main(String[] args) {
-    final Test test = new Test();
+   public static void main(String[] args) {
+      final Synconiser test = new Synconiser();
 
-    for(int i=0; i<2; i++) {
-      final int id = i;
-      new Thread(new Runnable() {
-        public void run() {
-          for(;;) {
-            test.value = id;
-            if (test.value != id)
-              System.out.println("id " + id + " " + test.value);
-          }
-        }
-      }).start();
-    }
-  }
+      for (int i = 0; i < 2; i++) {
+         final int id = i;
+         new Thread(new Runnable() {
+            public void run() {
+               for (; ; ) {
+                  test.value = id;
+                  if (test.value != id)
+                     System.out.println("id " + id + " " + test.value);
+               }
+            }
+         }).start();
+      }
+   }
 }
 ```
 
